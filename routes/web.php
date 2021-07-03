@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::post('/create', [
+    "uses" => "CarController@create",
+    "as" => "cars.create"
+]);
