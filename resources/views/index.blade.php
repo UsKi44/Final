@@ -11,7 +11,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <form action="{{route('cars.create')}}" method="post">
+                <form action="{{route('create')}}" method="post">
                     @csrf
                     <div class="row form-group">
                         <div class="col-md-12">
@@ -38,18 +38,36 @@
                     </div>
                 </form>
             </div>
+
+
+
             <div class="col-md-6">
                 <table class="table table-stripped table-hover">
+
                     <tr>
                         <th>Make</th>
                         <th>Model</th>
                         <th>Produced on</th>
                     </tr>
+                    @foreach($data as $elem)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$elem->make}}   </td>
+                        <td>{{$elem->model}} </td>
+                        <td>{{$elem->produced_on}} </td>
+                        <td>
+                            <form method="post" action="{{route('delete',$elem->id)}}">
+                                @csrf
+                                @method('DELETE')
+                                <button>Delete</button>
+                            </form>
+
+                        </td>
+
                     </tr>
+
+
+                    @endforeach
+
                 </table>
             </div>
         </div>

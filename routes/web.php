@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::post('/create', [
-    "uses" => "CarController@create",
-    "as" => "cars.create"
-]);
+//Route::get('/', function () {
+//    return view('index');
+//});
+
+Route::get('/',[\App\Http\Controllers\CarController::class,'index']);
+
+
+//Route::post('/create', [
+//    "uses" => "CarController@create",
+//    "as" => "cars.create"
+//]);
+
+
+Route::post('/create',[\App\Http\Controllers\CarController::class,'create'])->name('create');
+
+Route::delete('{id}/delete',[\App\Http\Controllers\CarController::class,'delete'])->name('delete');
