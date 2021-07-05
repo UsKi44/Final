@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CarController extends Controller
 {
     public function index(){
+        $Auth = Auth::check();
+        return view('index',compact('Auth'));
+    }
+
+
+    public function add_car(){
         $data = Car::all();
 
-        return view('index',compact('data'));
+        return view('add_car',compact('data'));
     }
 
 
@@ -34,5 +41,8 @@ class CarController extends Controller
         $car->delete();
 
         return redirect()->back();
+    }
+    public function edit(){
+        return view('/edit');
     }
 }
